@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Phishing Detection</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="header">
+      <div class="brand">
+        <span class="shield-logo">🛡️</span>
+        <div class="brand-text">
+          <h1>PhishGuard AI</h1>
+          <span class="sub-text">Live Detection Engine</span>
+        </div>
+      </div>
+      <button id="btn-open-settings" class="icon-btn" title="Open Settings Portal">⚙️</button>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tab-overview">Overview</button>
+      <button class="tab-btn" data-tab="tab-actions">Actions</button>
+      <button class="tab-btn" data-tab="tab-history">History</button>
+    </nav>
+
+    <!-- TAB 1: OVERVIEW -->
+    <div id="tab-overview" class="tab-content active">
+      <!-- Domain Info Header -->
+      <div class="domain-card">
+        <span class="domain-label">CURRENT ACTIVE TAB</span>
+        <div id="domain-name" class="domain-value">Analyzing page...</div>
+        <div id="url-subtext" class="url-subtext">Connecting to backend AI service...</div>
+      </div>
+
+      <!-- Risk Score Gauge -->
+      <div class="gauge-card">
+        <div class="gauge-wrapper">
+          <svg class="gauge-svg" viewBox="0 0 100 100">
+            <circle class="gauge-bg" cx="50" cy="50" r="42"></circle>
+            <circle id="gauge-fill" class="gauge-fill" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264"></circle>
+          </svg>
+          <div class="gauge-text">
+            <span id="risk-score-value" class="risk-score-num">--</span>
+            <span class="risk-percent-symbol">%</span>
+            <div class="risk-score-sub font-bold">RISK SCORE</div>
+          </div>
+        </div>
+
+        <div id="status-badge" class="status-badge badge-neutral">
+          <span class="badge-dot"></span>
+          <span id="badge-text">SCANNING...</span>
+        </div>
+      </div>
+
+      <!-- Threat Breakdown -->
+      <div class="section-title">
+        <span>SECURITY ANALYSIS BREAKDOWN</span>
+      </div>
+      <div id="breakdown-list" class="breakdown-list">
+        <div class="empty-state">No security anomalies detected.</div>
+      </div>
+    </div>
+
+    <!-- TAB 2: ACTIONS -->
+    <div id="tab-actions" class="tab-content">
+      <div class="action-cards">
+        <!-- Whitelist Toggle -->
+        <div class="action-item">
+          <div class="action-info">
+            <span class="action-icon">✅</span>
+            <div>
+              <h3>Trusted Whitelist</h3>
+              <p>Bypass real-time ML scanning for this domain</p>
+            </div>
+          </div>
+          <button id="btn-toggle-whitelist" class="btn-action btn-outline">Whitelist Site</button>
+        </div>
+
+        <!-- Report Site -->
+        <div class="action-item">
+          <div class="action-info">
+            <span class="action-icon">🚩</span>
+            <div>
+              <h3>Report Threat</h3>
+              <p>Submit misclassified site for ML retraining</p>
+            </div>
+          </div>
+          <button id="btn-show-report-modal" class="btn-action btn-danger">Report Phishing</button>
+        </div>
+
+        <!-- Force Re-scan -->
+        <div class="action-item">
+          <div class="action-info">
+            <span class="action-icon">🔄</span>
+            <div>
+              <h3>Re-Scan Active Tab</h3>
+              <p>Re-evaluate domain features immediately</p>
+            </div>
+          </div>
+          <button id="btn-rescan" class="btn-action btn-secondary">Run Scan</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: SCAN HISTORY -->
+    <div id="tab-history" class="tab-content">
+      <div class="history-header">
+        <span>RECENT SCAN LOGS</span>
+        <button id="btn-refresh-history" class="text-btn">Refresh</button>
+      </div>
+      <div id="history-list" class="history-list">
+        <div class="empty-state">Loading scan history...</div>
+      </div>
+    </div>
+
+    <!-- Report Modal -->
+    <div id="report-modal" class="modal-backdrop hidden">
+      <div class="modal-box">
+        <h3>Report Phishing Site</h3>
+        <p class="modal-sub">Help improve our Random Forest model accuracy.</p>
+        
+        <label for="report-comments" class="form-label">User Notes / Description:</label>
+        <textarea id="report-comments" class="form-textarea" placeholder="e.g. Deceptive login page asking for credit card credentials..."></textarea>
+        
+        <div class="modal-buttons">
+          <button id="btn-cancel-report" class="btn-action btn-secondary">Cancel</button>
+          <button id="btn-submit-report" class="btn-action btn-danger">Submit Report</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <span>Group 16 - Minor Project I</span>
+      <span id="backend-status-dot" class="status-dot online" title="Backend Server Online"></span>
+    </footer>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

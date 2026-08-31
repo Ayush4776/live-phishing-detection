@@ -1,0 +1,155 @@
+/* Full Page Phishing Threat Warning Overlay */
+#phishing-detection-overlay-container {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 2147483647 !important; /* Max z-index */
+  background: rgba(15, 23, 42, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif !important;
+  color: #f8fafc !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 20px !important;
+}
+
+#phishing-detection-card {
+  background: #1e293b !important;
+  border: 1px solid rgba(239, 68, 68, 0.4) !important;
+  border-radius: 20px !important;
+  max-width: 560px !important;
+  width: 100% !important;
+  padding: 32px !important;
+  box-shadow: 0 25px 50px -12px rgba(239, 68, 68, 0.25), 0 0 0 1px rgba(239, 68, 68, 0.1) !important;
+  text-align: center !important;
+  animation: phishingSlideDown 0.35s ease-out !important;
+}
+
+@keyframes phishingSlideDown {
+  from { opacity: 0; transform: translateY(-25px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.phishing-header-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  background: rgba(239, 68, 68, 0.15) !important;
+  color: #fca5a5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  padding: 6px 16px !important;
+  border-radius: 9999px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 20px !important;
+}
+
+.phishing-icon-shield {
+  width: 64px !important;
+  height: 64px !important;
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0.05) 70%) !important;
+  border: 2px solid #ef4444 !important;
+  border-radius: 50% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 20px auto !important;
+  font-size: 32px !important;
+}
+
+.phishing-title {
+  font-size: 26px !important;
+  font-weight: 800 !important;
+  color: #ffffff !important;
+  margin: 0 0 12px 0 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.phishing-description {
+  font-size: 15px !important;
+  color: #94a3b8 !important;
+  line-height: 1.6 !important;
+  margin: 0 0 24px 0 !important;
+}
+
+.phishing-risk-box {
+  background: #0f172a !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  margin-bottom: 24px !important;
+  text-align: left !important;
+}
+
+.phishing-risk-header {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  margin-bottom: 8px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+.phishing-threat-score {
+  color: #ef4444 !important;
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+.phishing-features-list {
+  margin: 8px 0 0 0 !important;
+  padding-left: 20px !important;
+  font-size: 13px !important;
+  color: #cbd5e1 !important;
+}
+
+.phishing-features-list li {
+  margin-bottom: 6px !important;
+}
+
+.phishing-actions-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.phishing-btn-primary {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 14px 24px !important;
+  border-radius: 12px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3) !important;
+}
+
+.phishing-btn-primary:hover {
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+}
+
+.phishing-btn-secondary {
+  background: transparent !important;
+  color: #94a3b8 !important;
+  border: 1px solid #334155 !important;
+  padding: 12px 20px !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+.phishing-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  color: #ffffff !important;
+}

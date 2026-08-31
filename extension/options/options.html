@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard AI - Security Settings & Management Portal</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="options-layout">
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="logo-icon">🛡️</span>
+        <div>
+          <h2>PhishGuard AI</h2>
+          <span class="version">v1.0.0 (Group 16)</span>
+        </div>
+      </div>
+
+      <nav class="side-nav">
+        <button class="nav-item active" data-target="panel-whitelist">
+          <span class="nav-icon">✅</span> Trusted Whitelist
+        </button>
+        <button class="nav-item" data-target="panel-reports">
+          <span class="nav-icon">🚩</span> Phishing Reports
+        </button>
+        <button class="nav-item" data-target="panel-history">
+          <span class="nav-icon">📜</span> Scan Activity Logs
+        </button>
+        <button class="nav-item" data-target="panel-config">
+          <span class="nav-icon">⚙️</span> API Configuration
+        </button>
+      </nav>
+
+      <div class="supervisor-info">
+        <div><strong>Supervisor:</strong> Ms. S. Geetanjali Patra</div>
+        <div><strong>Group:</strong> 16 (CSE303 & CSE398)</div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Header Bar -->
+      <header class="top-header">
+        <div>
+          <h1 id="panel-title">Trusted Whitelist Management</h1>
+          <p id="panel-subtitle">Manage domains that bypass dynamic machine learning phishing scanning</p>
+        </div>
+        <div id="connection-status-pill" class="status-pill pill-online">
+          <span class="pill-dot"></span> Backend API Connected
+        </div>
+      </header>
+
+      <!-- Stats Metrics Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-title">TOTAL URL SCANS</div>
+          <div id="stat-total-scans" class="stat-value">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">PHISHING THREATS</div>
+          <div id="stat-phishing-count" class="stat-value text-red">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">WHITELISTED SITES</div>
+          <div id="stat-whitelist-count" class="stat-value text-green">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-title">MODEL ACCURACY</div>
+          <div id="stat-model-acc" class="stat-value text-blue">98.5%</div>
+        </div>
+      </div>
+
+      <!-- PANEL 1: WHITELIST MANAGEMENT -->
+      <section id="panel-whitelist" class="panel-section active">
+        <div class="card">
+          <div class="card-header">
+            <div class="search-bar">
+              <input type="text" id="whitelist-search" placeholder="Search whitelisted domains...">
+            </div>
+            <div class="action-buttons-row">
+              <input type="file" id="import-json-file" accept=".json" style="display: none;">
+              <button id="btn-import-whitelist" class="btn btn-secondary">📥 Import JSON</button>
+              <button id="btn-export-whitelist" class="btn btn-secondary">📤 Export JSON</button>
+              <div class="add-domain-form">
+                <input type="text" id="new-domain-input" placeholder="e.g. custom-trusted-site.org">
+                <button id="btn-add-domain" class="btn btn-primary">+ Add Domain</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Whitelist Table -->
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Domain Name</th>
+                  <th>Added By</th>
+                  <th>Date Added</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="whitelist-table-body">
+                <tr><td colspan="4" class="text-center">Loading whitelisted domains...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 2: PHISHING REPORTS -->
+      <section id="panel-reports" class="panel-section">
+        <div class="card">
+          <div class="card-header">
+            <h3>User-Reported Phishing Websites</h3>
+            <button id="btn-refresh-reports" class="btn btn-secondary">🔄 Refresh</button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Reported Domain</th>
+                  <th>Target URL</th>
+                  <th>User Notes / Comments</th>
+                  <th>Date Reported</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="reports-table-body">
+                <tr><td colspan="6" class="text-center">Loading submitted reports...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 3: SCAN ACTIVITY LOGS -->
+      <section id="panel-history" class="panel-section">
+        <div class="card">
+          <div class="card-header">
+            <h3>Historical URL Scans</h3>
+            <button id="btn-refresh-logs" class="btn btn-secondary">🔄 Refresh Logs</button>
+          </div>
+          <div class="table-container">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Scanned URL</th>
+                  <th>Domain</th>
+                  <th>Risk Score</th>
+                  <th>Classification</th>
+                  <th>Scanned Time</th>
+                </tr>
+              </thead>
+              <tbody id="logs-table-body">
+                <tr><td colspan="5" class="text-center">Loading historical scan logs...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 4: API CONFIGURATION -->
+      <section id="panel-config" class="panel-section">
+        <div class="card">
+          <div class="card-header">
+            <h3>FastAPI Server Backend Configuration</h3>
+          </div>
+          <div class="config-form">
+            <div class="form-group">
+              <label for="api-url-input">FastAPI Backend Endpoint Base URL:</label>
+              <input type="text" id="api-url-input" class="form-input" placeholder="http://127.0.0.1:8000">
+              <p class="form-help">Default host is local FastAPI server endpoint (http://127.0.0.1:8000).</p>
+            </div>
+            
+            <div class="form-group">
+              <label>Threshold Slider for Phishing Warning Overlay:</label>
+              <div class="slider-container">
+                <input type="range" id="threshold-slider" min="30" max="90" value="60" class="slider">
+                <span id="threshold-val">60%</span>
+              </div>
+              <p class="form-help">Trigger alert overlay when Random Forest risk score equals or exceeds this percentage.</p>
+            </div>
+
+            <div class="form-actions">
+              <button id="btn-test-api" class="btn btn-secondary">🔌 Test API Connection</button>
+              <button id="btn-save-config" class="btn btn-primary">💾 Save Settings</button>
+            </div>
+            <div id="config-status-msg" class="status-msg"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>
